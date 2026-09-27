@@ -1,0 +1,119 @@
+// MageOS PasskeyAuth Styles
+//
+// Reuses Magento blank/Luma theme patterns wherever possible:
+//   Messages: .message.info / .message.error / .message.success (lib/_messages.less)
+//   Tables:   .data.table (lib/_tables.less)
+//   Buttons:  .action.primary (lib/_buttons.less)
+
+// "Or" divider — no built-in equivalent
+.passkey-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: @indent__base 0;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: @border-width__base solid @border-color__base;
+    }
+
+    span {
+        padding: 0 @indent__s + 5;
+        color: @text__color__muted;
+        font-size: @font-size__s;
+        text-transform: uppercase;
+    }
+}
+
+// Reorder passkey section below the Sign In button within the login fieldset
+.fieldset.login {
+    display: flex;
+    flex-direction: column;
+
+    .passkey-login-section {
+        order: 1;
+    }
+}
+
+// Login button sizing
+.passkey-login-actions {
+    text-align: center;
+
+    .action.passkey-login {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: @indent__xs;
+
+        .passkey-icon {
+            flex-shrink: 0;
+        }
+
+        &.passkey-busy {
+            opacity: .7;
+            cursor: wait;
+        }
+    }
+}
+
+// My Account — passkey management
+.passkey-management {
+    .passkey-actions .action {
+        &.delete {
+            color: @error__color;
+
+            &:hover {
+                color: darken(@error__color, 10%);
+            }
+        }
+    }
+
+    .passkey-add-action {
+        margin-top: @indent__base;
+    }
+
+    .name-edit {
+        .lib-css(padding, @indent__xs);
+    }
+}
+
+// Enrollment prompt banner
+.passkey-enrollment-prompt {
+    background-color: lighten(@theme__color__primary, 48%);
+    border: @border-width__base solid lighten(@theme__color__primary, 30%);
+    border-radius: @button__border-radius;
+    padding: @indent__s + 5 @indent__base;
+    margin-bottom: @indent__base;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: @indent__s;
+
+    .enrollment-message span {
+        color: @text__color__muted;
+        font-size: @font-size__s;
+    }
+
+    .enrollment-actions {
+        display: flex;
+        gap: @indent__s;
+        align-items: center;
+
+        .action.dismiss {
+            background: none;
+            border: none;
+            color: @text__color__muted;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+
+            &:hover {
+                color: @primary__color;
+            }
+        }
+    }
+}
